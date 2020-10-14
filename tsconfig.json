@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "outDir": "./lib",
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "strict": false,
+    "declaration": true,
+    "module": "commonjs",
+    "moduleResolution": "node"
+  },
+  "include": [
+    "src",
+    "src/tests",
+    "typings"
+  ],
+  "exclude": [
+    "node_modules",
+    "lib",
+    "**/__tests__/*"
+  ]
+}
