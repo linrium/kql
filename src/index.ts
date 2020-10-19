@@ -241,34 +241,48 @@ const kql = P.createLanguage({
     return P.seqObj<any, any>(
       ["command", word("create")],
       ["type", r.text],
-      ["name", r.text],
+      ["alias", r.asAlias],
       ["parameters", r.parameters.or(optional)]
     )
       .skip(r.comment)
       .thru((parser) => whitespace.then(parser))
   },
 
-  getConfig: (r) => {
+  drop: (r) => {
+    return P.seqObj<any, any>(
+      ["command", word("drop")],
+      ["type", r.text],
+      ["alias", r.asAlias],
+      ["parameters", r.parameters.or(optional)]
+    )
+      .skip(r.comment)
+      .thru((parser) => whitespace.then(parser))
+  },
+
+  get: (r) => {
     return P.seqObj<any, any>(
       ["command", word("get")],
-      ["type", word("config")],
+      ["type", r.text],
+      ["alias", r.asAlias],
       ["parameters", r.parameters]
     )
       .skip(r.comment)
       .thru((parser) => whitespace.then(parser))
   },
 
-  updateConfig: (r) => {
+  update: (r) => {
     return P.seqObj<any, any>(
       ["command", word("update")],
-      ["type", word("config")]
+      ["type", r.text],
+      ["alias", r.asAlias],
+      ["parameters", r.parameters]
     )
       .skip(r.comment)
       .thru((parser) => whitespace.then(parser))
   },
 
   parser: (r) => {
-    return P.alt(r.fetch, r.select, r.create, r.getConfig, r.updateConfig)
+    return P.alt(r.fetch, r.select, r.create, r.drop, r.get, r.update)
   },
 })
 
