@@ -1,13 +1,42 @@
 {
-  "name": "kql",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "@ahamove/kql",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
+  "private": false,
   "scripts": {
-    "dev": "ts-node ./src/index.ts"
+    "dev": "ts-node ./src/index.ts",
+    "start": "ts-node ./src/select.ts",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "test": "jest --config jestconfig.json",
+    "prepare": "npm run build",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lynkxyz/kql.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lynkxyz/kql/issues"
+  },
+  "homepage": "https://github.com/lynkxyz/kql#readme",
+  "author": "lynkxyz",
+  "keywords": [
+    "kepler",
+    "metbase",
+    "tile38",
+    "kql",
+    "kepler query language"
+  ],
+  "files": [
+    "lib/**/*"
+  ],
   "dependencies": {
     "axios": "^0.20.0",
+    "dayjs": "^1.9.3",
     "lodash": "^4.17.20",
     "parsimmon": "^1.16.0",
     "query-string": "^6.13.5"
