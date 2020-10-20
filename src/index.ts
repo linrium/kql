@@ -1,9 +1,4 @@
-import * as util from "util"
 import * as P from "parsimmon"
-import axios from "axios"
-import _ from "lodash"
-import * as qs from "query-string"
-import * as dayjs from "dayjs"
 
 // Turn escaped characters into real ones (e.g. "\\n" becomes "\n").
 function interpretEscapes(str) {

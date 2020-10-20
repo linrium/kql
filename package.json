@@ -1,6 +1,6 @@
 {
   "name": "@ahamove/kql",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
@@ -35,11 +35,7 @@
     "lib/**/*"
   ],
   "dependencies": {
-    "axios": "^0.20.0",
-    "dayjs": "^1.9.3",
-    "lodash": "^4.17.20",
-    "parsimmon": "^1.16.0",
-    "query-string": "^6.13.5"
+    "parsimmon": "^1.16.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
