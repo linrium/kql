@@ -55,7 +55,8 @@ const kql = P.createLanguage({
       r.true,
       r.false,
       r.fn,
-      r.constants
+      r.constants,
+      r.args
     ).thru((parser) => whitespace.then(parser)),
 
   // The basic tokens in JSON, with optional whitespace afterward.
@@ -111,6 +112,12 @@ const kql = P.createLanguage({
     P.alt(r.lbracket, r.lParenthesis)
       .then(r.value.sepBy(r.comma))
       .skip(P.alt(r.rbracket, r.rParenthesis)),
+
+  args: (r) => {
+    return P.alt(word("{{"))
+      .then(r.value)
+      .skip(P.alt(word("}}")))
+  },
 
   // Object parsing is a little trickier because we have to collect all the key-
   // value pairs in order as length-2 arrays, then manually copy them into an
@@ -264,7 +271,7 @@ const kql = P.createLanguage({
       ["command", word("get")],
       ["type", r.text],
       ["alias", r.asAlias],
-      ["parameters", r.parameters]
+      ["parameters", r.parameters.or(optional)]
     )
       .skip(r.comment)
       .thru((parser) => whitespace.then(parser))
@@ -275,7 +282,7 @@ const kql = P.createLanguage({
       ["command", word("update")],
       ["type", r.text],
       ["alias", r.asAlias],
-      ["parameters", r.parameters]
+      ["parameters", r.parameters.or(optional)]
     )
       .skip(r.comment)
       .thru((parser) => whitespace.then(parser))
